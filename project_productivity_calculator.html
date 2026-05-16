@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Productivity Calculator</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f4f7fb;color:#222}
+header{
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+color:#fff;padding:25px;text-align:center;
+box-shadow:0 2px 10px rgba(0,0,0,.15)
+}
+header h1{font-size:2rem}
+.container{
+max-width:1200px;margin:30px auto;padding:20px;
+display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px
+}
+.card{
+background:#fff;border-radius:18px;padding:22px;
+box-shadow:0 4px 15px rgba(0,0,0,.08)
+}
+.card h3{margin-bottom:15px;color:#1e3c72}
+input{
+width:100%;padding:12px;margin:8px 0;
+border:1px solid #ddd;border-radius:10px
+}
+button{
+width:100%;padding:12px;border:none;
+border-radius:10px;cursor:pointer;font-size:16px;
+background:#2a5298;color:white;font-weight:bold
+}
+button:hover{opacity:.92}
+.result{
+margin-top:10px;padding:10px;background:#eef4ff;
+border-radius:10px;font-weight:bold
+}
+footer{
+margin-top:40px;background:#1e3c72;color:#fff;
+text-align:center;padding:20px
+}
+.small{font-size:.95rem;opacity:.95}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Project Productivity Dashboard Calculator</h1>
+<p>SPI, CPI, Productivity, Risk & Cost Calculations</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h3>SPI Calculator</h3>
+<input id="spi_ev" type="number" placeholder="Earned Value (EV)">
+<input id="spi_pv" type="number" placeholder="Planned Value (PV)">
+<button onclick="calcSPI()">Calculate SPI</button>
+<div class="result" id="spi_result">Result: --</div>
+</div>
+
+<div class="card">
+<h3>CPI Calculator</h3>
+<input id="cpi_ev" type="number" placeholder="Earned Value (EV)">
+<input id="cpi_ac" type="number" placeholder="Actual Cost (AC)">
+<button onclick="calcCPI()">Calculate CPI</button>
+<div class="result" id="cpi_result">Result: --</div>
+</div>
+
+<div class="card">
+<h3>Cost Variance (CV)</h3>
+<input id="cv_ev" type="number" placeholder="Earned Value (EV)">
+<input id="cv_ac" type="number" placeholder="Actual Cost (AC)">
+<button onclick="calcCV()">Calculate CV</button>
+<div class="result" id="cv_result">Result: --</div>
+</div>
+
+<div class="card">
+<h3>Schedule Variance (SV)</h3>
+<input id="sv_ev" type="number" placeholder="Earned Value (EV)">
+<input id="sv_pv" type="number" placeholder="Planned Value (PV)">
+<button onclick="calcSV()">Calculate SV</button>
+<div class="result" id="sv_result">Result: --</div>
+</div>
+
+<div class="card">
+<h3>Productivity Calculator</h3>
+<input id="prod_output" type="number" placeholder="Output">
+<input id="prod_input" type="number" placeholder="Input">
+<button onclick="calcProductivity()">Calculate Productivity</button>
+<div class="result" id="prod_result">Result: --</div>
+</div>
+
+<div class="card">
+<h3>Risk Score Calculator</h3>
+<input id="risk_prob" type="number" placeholder="Probability">
+<input id="risk_impact" type="number" placeholder="Impact">
+<button onclick="calcRisk()">Calculate Risk</button>
+<div class="result" id="risk_result">Result: --</div>
+</div>
+
+<div class="card">
+<h3>EAC Calculator</h3>
+<input id="eac_bac" type="number" placeholder="Budget at Completion (BAC)">
+<input id="eac_cpi" type="number" placeholder="CPI">
+<button onclick="calcEAC()">Calculate EAC</button>
+<div class="result" id="eac_result">Result: --</div>
+</div>
+
+</div>
+
+<footer>
+<h3>Engr M Waleed Jan</h3>
+<p class="small">Planner | Risk Analyst | Data Analyst</p>
+</footer>
+
+<script>
+function val(id){ return parseFloat(document.getElementById(id).value)||0 }
+
+function calcSPI(){
+document.getElementById('spi_result').innerHTML =
+'Result: ' + (val('spi_ev')/val('spi_pv')).toFixed(2);
+}
+function calcCPI(){
+document.getElementById('cpi_result').innerHTML =
+'Result: ' + (val('cpi_ev')/val('cpi_ac')).toFixed(2);
+}
+function calcCV(){
+document.getElementById('cv_result').innerHTML =
+'Result: ' + (val('cv_ev')-val('cv_ac')).toFixed(2);
+}
+function calcSV(){
+document.getElementById('sv_result').innerHTML =
+'Result: ' + (val('sv_ev')-val('sv_pv')).toFixed(2);
+}
+function calcProductivity(){
+document.getElementById('prod_result').innerHTML =
+'Result: ' + (val('prod_output')/val('prod_input')).toFixed(2);
+}
+function calcRisk(){
+document.getElementById('risk_result').innerHTML =
+'Result: ' + (val('risk_prob')*val('risk_impact')).toFixed(2);
+}
+function calcEAC(){
+document.getElementById('eac_result').innerHTML =
+'Result: ' + (val('eac_bac')/val('eac_cpi')).toFixed(2);
+}
+</script>
+
+</body>
+</html>
